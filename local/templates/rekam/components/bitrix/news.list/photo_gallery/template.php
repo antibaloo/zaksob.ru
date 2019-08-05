@@ -45,6 +45,7 @@ $this->setFrameMode(true);
                                 <?$js_gallery = '';
                                 if(!empty($arItem["GALLERY"])){
                                     $j = 0;
+                                    $js_gallery = array();
                                     foreach($arItem["GALLERY"] as $file){
                                         $js_gallery[] = array(
                                             "index" => $j, 
