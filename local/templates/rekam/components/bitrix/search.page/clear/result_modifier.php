@@ -1,4 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+Bitrix\Main\Diag\Debug::dumpToFile(array('ID' => date("r"), 'fields'=>$_REQUEST ),"","debug.txt");
 $arResult["TAGS_CHAIN"] = array();
 if($arResult["REQUEST"]["~TAGS"])
 {
