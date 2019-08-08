@@ -239,7 +239,6 @@ CJSCore::Init(array("jquery"));
 
 	</div>
 </div>
-<?$arParams["customFilter"] = array();?>
 <script>
   console.log(<?=\CUtil::PhpToJSObject($arParams)?>);
   console.log(<?=\CUtil::PhpToJSObject($arResult)?>);
