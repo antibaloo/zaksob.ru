@@ -91,5 +91,6 @@ $sectionFilter = array(
   'y' => '/press-tsentr/multimedia/fotogalerei/',
   'z' => '/press-tsentr/izdaniya-i-analiticheskie-materialy/'
 );
+$arResult["REQUEST"]["sectionFilter"] = $_REQUEST["sectionFilter"];
 /*-----------------------------------------------------------------------------------------------------------*/
 ?>
