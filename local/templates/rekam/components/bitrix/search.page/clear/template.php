@@ -71,7 +71,8 @@ CJSCore::Init(array("jquery"));
         <div class="filter highlighted">
             <form action="" method="get"> 
                 <input type="hidden" name="tags" value="<?echo $arResult["REQUEST"]["TAGS"]?>" /> 
-                <input type="hidden" name="how" value="<?echo $arResult["REQUEST"]["HOW"]=="d"? "d": "r"?>" /> 
+                <input type="hidden" name="how" value="<?echo $arResult["REQUEST"]["HOW"]=="d"? "d": "r"?>" />
+                <input type="hidden" id="sectionFilter" name="sectionFilter" value="<?echo $arResult["REQUEST"]["sectionFilter"]?>" />
                 <div class="filter__inner"> 
                         <div class="filter__item">
                             <label class="label label--dark label--full-width label--normal" for="search-main">
