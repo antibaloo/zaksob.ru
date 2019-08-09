@@ -61,4 +61,34 @@ foreach($arResult["SEARCH"] as $j=>$item){
         }
     }
 }
+/*--------------------Правки связанные с фильтрацией результатов поиска по разделам---------------------------*/
+$filterSections = array(
+  'a' => '/activity/obshchie-svedeniya/',
+  'b' => '/activity/zakonotvorcheskaya-deyatelnost/',
+  'c' => '/activity/zasedaniya/',
+  'd' => '/activity/byudzhet-orenburgskoy-oblasti/',
+  'e' => '/activity/sotrudnichestvo/',
+  'f' => '/activity/zakupki/',
+  'g' => '/activity/vakansii/',
+  'h' => '/activity/kadrovoe-obespechenie/',
+  'i' => '/activity/protivodeystvie-korruptsii/',
+  'j' => '/servisy/nayti-deputata/sergey-ivanovich-grachev/',
+  'k' => '/struktura/zamestiteli-predsedatelya/',
+  'l' => '/servisy/nayti-deputata/',
+  'm' => '/struktura/fraktsii/',
+  'n' => '/struktura/komitety/',
+  'o' => '/struktura/predstavitel-v-sovete-federatsii/',
+  'p' => '/struktura/sovet-zakonodatelnogo-sobraniya/',
+  'q' => '/struktura/apparat-zakonodatelnogo-sobraniya/',
+  'r' => '/struktura/organy-pri-zakonodatelnom-sobranii/',
+  's' => '/press-tsentr/multimedia/videomaterialy/',
+  't' => '/servisy/oprosy/',
+  'u' => '/servisy/moya-zakonodatelnaya-initsiativa/',
+  'v' => '/servisy/rabota-s-obrashcheniyami/',
+  'w' => '/servisy/grafik-priema-izbirateley/',
+  'x' => '/press-tsentr/novosti/"',
+  'y' => '/press-tsentr/multimedia/fotogalerei/',
+  'z' => '/press-tsentr/izdaniya-i-analiticheskie-materialy/'
+);
+/*-----------------------------------------------------------------------------------------------------------*/
 ?>
