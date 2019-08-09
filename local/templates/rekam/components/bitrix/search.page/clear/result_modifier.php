@@ -76,21 +76,23 @@ $sectionFilter = array(
   'j' => '/servisy/nayti-deputata/sergey-ivanovich-grachev/',
   'k' => '/struktura/zamestiteli-predsedatelya/',
   'l' => '/servisy/nayti-deputata/',
-  'm' => '/struktura/fraktsii/',
-  'n' => '/struktura/komitety/',
+  'm' => '/struktura/',
+/*  'n' => '/struktura/komitety/',
   'o' => '/struktura/predstavitel-v-sovete-federatsii/',
   'p' => '/struktura/sovet-zakonodatelnogo-sobraniya/',
   'q' => '/struktura/apparat-zakonodatelnogo-sobraniya/',
-  'r' => '/struktura/organy-pri-zakonodatelnom-sobranii/',
+  'r' => '/struktura/organy-pri-zakonodatelnom-sobranii/',*/
   's' => '/press-tsentr/multimedia/videomaterialy/',
   't' => '/servisy/oprosy/',
   'u' => '/servisy/moya-zakonodatelnaya-initsiativa/',
   'v' => '/servisy/rabota-s-obrashcheniyami/',
   'w' => '/servisy/grafik-priema-izbirateley/',
-  'x' => '/press-tsentr/novosti/"',
+  'x' => '/press-tsentr/novosti/',
   'y' => '/press-tsentr/multimedia/fotogalerei/',
   'z' => '/press-tsentr/izdaniya-i-analiticheskie-materialy/'
 );
-$arResult["REQUEST"]["sectionFilter"] = $_REQUEST["sectionFilter"];
+$arResult["REQUEST"]["filterCheck"] = $_REQUEST["filterCheck"];
+$filterCheckArray = str_split(implode($_REQUEST["filterCheck"]));
+Bitrix\Main\Diag\Debug::dumpToFile(array('ID' => date("r"), 'fields'=>$filterCheckArray),"","debug.txt");
 /*-----------------------------------------------------------------------------------------------------------*/
 ?>
