@@ -72,7 +72,6 @@ CJSCore::Init(array("jquery"));
             <form action="" method="get"> 
                 <input type="hidden" name="tags" value="<?echo $arResult["REQUEST"]["TAGS"]?>" /> 
                 <input type="hidden" name="how" value="<?echo $arResult["REQUEST"]["HOW"]=="d"? "d": "r"?>" />
-                <input type="hidden" id="sectionFilter" name="sectionFilter" value="<?echo $arResult["REQUEST"]["sectionFilter"]?>" />
                 <div class="filter__inner"> 
                         <div class="filter__item">
                             <label class="label label--dark label--full-width label--normal" for="search-main">
@@ -107,12 +106,21 @@ CJSCore::Init(array("jquery"));
                         <div class="filter__item">
                             <input class="btn btn--dark btn--small btn--lower search-button" type="submit" value="<?echo GetMessage("CT_BSP_GO")?>" />
                         </div>
-
-
-
                 </div>
-
-            </form>
+              <p>Разделы, в которых ведется поиск:</p>
+              <p>
+                <input type="checkbox" name="filterCheck[1]" value="x" <?=($arResult["REQUEST"]["filterCheck"][1] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Новости<br>
+                <input type="checkbox" name="filterCheck[2]" value="s" <?=($arResult["REQUEST"]["filterCheck"][2] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Видеоматериалы<br>
+                <input type="checkbox" name="filterCheck[3]" value="y" <?=($arResult["REQUEST"]["filterCheck"][3] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Фотогалерея<br>
+                <input type="checkbox" name="filterCheck[4]" value="l" <?=($arResult["REQUEST"]["filterCheck"][4] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Депутаты<br>
+                <input type="checkbox" name="filterCheck[5]" value="m" <?=($arResult["REQUEST"]["filterCheck"][5] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Структура Законодательного Собрания<br>
+                <input type="checkbox" name="filterCheck[6]" value="b" <?=($arResult["REQUEST"]["filterCheck"][6] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Законотворческая деятельность<br>
+                <input type="checkbox" name="filterCheck[7]" value="c" <?=($arResult["REQUEST"]["filterCheck"][7] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Заседания Законодательного Собрания<br>
+                <input type="checkbox" name="filterCheck[8]" value="d" <?=($arResult["REQUEST"]["filterCheck"][8] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Бюджет Оренбургской области<br>
+                <input type="checkbox" name="filterCheck[9]" value="g" <?=($arResult["REQUEST"]["filterCheck"][9] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Кадровое обеспечение<br>
+                <input type="checkbox" name="filterCheck[10]" value="aefhijktuvwz" <?=($arResult["REQUEST"]["filterCheck"][10] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Другие<br>
+              </p>
+          </form>
         </div>
     </div>
 

@@ -13,9 +13,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 $(document).ready(function () {
-  console.log("Ready!!!");
   var $sectionFilter = getUrlParameter('sectionFilter');
-  console.log($sectionFilter);
   if ($sectionFilter == undefined || $sectionFilter == '') $("#sectionFilter").val('abcdefghijklmnopqrstuvwxyz');
   else $("#sectionFilter").val(getUrlParameter('sectionFilter'));
 });
