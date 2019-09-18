@@ -182,7 +182,7 @@ CJSCore::Init(array("jquery"));
                               <?=((IBLOCK_NEWS == $arItem["PARAM2"]) ? "Новость " : "")?>от <time datetime="<?=$arItem["DATE_CHANGE"]?>"><?=$arItem["DATE_CHANGE"]?></time>
                             </div>
                             <div class="results__items-item-link">
-                                <a rel="bookmark"   <?=( ($arItem["FILE"] == "Y") ? "target='_blank'" : "")?> href="<?echo $arItem["URL"]?>"><?echo $arItem["TITLE_FORMATED"]?></a>
+                                <a rel="bookmark"   target='_blank' href="<?echo $arItem["URL"]?>"><?echo $arItem["TITLE_FORMATED"]?></a>
                             </div>
 				<div class="search-preview"><?echo $arItem["BODY_FORMATED"]?></div>
 				<?if(
@@ -229,7 +229,7 @@ CJSCore::Init(array("jquery"));
 						<div class="search-item-date"><label><?echo GetMessage("CT_BSP_DATE_CHANGE")?>: </label><span><?echo $arItem["DATE_CHANGE"]?></span></div>
 					<?endif;?>
 				</div>
-				<?endif
+				<?endif;
         	if($arItem["CHAIN_PATH"]):?>
         <small><?=GetMessage("SEARCH_PATH")?>&nbsp;<?=$arItem["CHAIN_PATH"]?></small>
         <?endif;?>
