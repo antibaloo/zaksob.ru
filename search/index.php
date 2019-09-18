@@ -8,6 +8,7 @@ $APPLICATION->SetTitle("Результат поиска");
             "bitrix:search.page", 
             "clear", 
             array(
+                    "SHOW_ITEM_PATH" => "Y",
                     "RESTART" => "N",
                     "CHECK_DATES" => "N",
                     "USE_TITLE_RANK" => "N",
