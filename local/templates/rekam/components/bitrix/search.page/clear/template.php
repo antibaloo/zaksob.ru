@@ -229,8 +229,13 @@ CJSCore::Init(array("jquery"));
 						<div class="search-item-date"><label><?echo GetMessage("CT_BSP_DATE_CHANGE")?>: </label><span><?echo $arItem["DATE_CHANGE"]?></span></div>
 					<?endif;?>
 				</div>
-				<?endif?>
+				<?endif
+        	if($arItem["CHAIN_PATH"]):?>
+        <small><?=GetMessage("SEARCH_PATH")?>&nbsp;<?=$arItem["CHAIN_PATH"]?></small>
+        <?endif;?>
+        <hr/>
 			</div>
+    
 		<?endforeach;?>
 		<?if($arParams["DISPLAY_BOTTOM_PAGER"] != "N") echo $arResult["NAV_STRING"]?>
 		<?if($arParams["SHOW_ORDER_BY"] != "N"):?>
