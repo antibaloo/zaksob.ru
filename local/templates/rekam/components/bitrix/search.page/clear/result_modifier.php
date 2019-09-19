@@ -25,7 +25,18 @@ if($arResult["REQUEST"]["~TAGS"])
 
 
 foreach($arResult["SEARCH"] as $j=>$item){
-    if($item["PARAM2"] == 26){
+    if($item["PARAM2"] == 28){
+      $res = CIBlockElement::GetList(array(), array("IBLOCK_ID"=>28, "ID" => $item["ITEM_ID"]), false, false, array("IBLOCK_SECTION_ID","PROPERTY_FILE"));
+      if ($ob = $res->GetNext()){
+        $res = CIBlockSection::GetByID($ob['IBLOCK_SECTION_ID']);
+        if($ar_res = $res->GetNext()) $ob['IBLOCK_SECTION_NAME'] = $ar_res['NAME'];
+        if ($ob['IBLOCK_SECTION_NAME']<>"") $arResult["SEARCH"][$j]["BODY_FORMATED"] = "<strong>".$ob['IBLOCK_SECTION_NAME'].":<br></strong>".$arResult["SEARCH"][$j]["BODY_FORMATED"];
+        $arFile = CFile::GetFileArray($ob['PROPERTY_FILE_VALUE']);
+        $arResult["SEARCH"][$j]["URL"] = $arFile['SRC'];
+        $arResult["SEARCH"][$j]["FILE"] = "Y";
+      }
+    }
+    if($item["PARAM2"] == 26){      
       $res = CIBlockElement::GetList(array(), array("IBLOCK_ID"=>26, "ID" => $item["ITEM_ID"]), false, false, array("IBLOCK_SECTION_ID","PROPERTY_POSITION","PROPERTY_PHONE","PROPERTY_FAX","PROPERTY_EMAIL"));
       if ($ob = $res->GetNext()){
         $res = CIBlockSection::GetByID($ob['IBLOCK_SECTION_ID']);
