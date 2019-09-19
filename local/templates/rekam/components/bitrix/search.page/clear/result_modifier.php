@@ -25,6 +25,18 @@ if($arResult["REQUEST"]["~TAGS"])
 
 
 foreach($arResult["SEARCH"] as $j=>$item){
+    if($item["PARAM2"] == 26){
+      $res = CIBlockElement::GetList(array(), array("IBLOCK_ID"=>26, "ID" => $item["ITEM_ID"]), false, false, array("IBLOCK_SECTION_ID","PROPERTY_POSITION","PROPERTY_PHONE","PROPERTY_FAX","PROPERTY_EMAIL"));
+      if ($ob = $res->GetNext()){
+        $res = CIBlockSection::GetByID($ob['IBLOCK_SECTION_ID']);
+        if($ar_res = $res->GetNext()) $ob['IBLOCK_SECTION_NAME'] = $ar_res['NAME'];
+        $arResult["SEARCH"][$j]["BODY_FORMATED"] = "Подразделение: ".$ob['IBLOCK_SECTION_NAME']."<br>";
+        $arResult["SEARCH"][$j]["BODY_FORMATED"] .= "Должность: ".$ob['PROPERTY_POSITION_VALUE']."<br>";
+        $arResult["SEARCH"][$j]["BODY_FORMATED"] .= "телефон: ".$ob['PROPERTY_PHONE_VALUE']."<br>";
+        if ($ob['PROPERTY_FAX_VALUE']<>"") $arResult["SEARCH"][$j]["BODY_FORMATED"] .= "факс: ".$ob['PROPERTY_FAX_VALUE']."<br>";
+        $arResult["SEARCH"][$j]["BODY_FORMATED"] .= "email: ".$ob['PROPERTY_EMAIL_VALUE']."<br>";
+      }
+    }  
     if($item["PARAM2"] == 22){
         
         $res = CIBlockElement::GetProperty(22, $item["ITEM_ID"], "sort", "asc", array("CODE" => "FULL_NAME"));
