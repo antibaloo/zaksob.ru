@@ -182,7 +182,9 @@ CJSCore::Init(array("jquery"));
                               <?=((IBLOCK_NEWS == $arItem["PARAM2"]) ? "Новость " : "")?>от <time datetime="<?=$arItem["DATE_CHANGE"]?>"><?=$arItem["DATE_CHANGE"]?></time>
                             </div>
                             <div class="results__items-item-link">
+                              <?if ($arItem['PARAM2']<>26){?>
                                 <a rel="bookmark"   target='_blank' href="<?echo $arItem["URL"]?>"><?echo $arItem["TITLE_FORMATED"]?></a>
+                              <?}else echo "<strong>".$arItem["TITLE_FORMATED"]."</strong>"?>
                             </div>
 				<div class="search-preview"><?echo $arItem["BODY_FORMATED"]?></div>
 				<?if(
