@@ -129,7 +129,7 @@ CJSCore::Init(array("jquery"));
     
         <?if(is_object($arResult["NAV_RESULT"])):?>
                 <div class="results__count"><?echo GetMessage("CT_BSP_FOUND", array("#QUERY#" => $arResult["REQUEST"]["QUERY"]))?> <?=plural_form(
-                        $arResult["NAV_RESULT"]->SelectedRowsCount(),
+                        count($arResult["SEARCH"])/*$arResult["NAV_RESULT"]->SelectedRowsCount()*/,
                         array('найден','найдено','найдено'),
                         array('результат','результата','результатов')
                       );?>
