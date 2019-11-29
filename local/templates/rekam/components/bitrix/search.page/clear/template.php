@@ -1,4 +1,5 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+$this->addExternalCss("./styles.css");
 CJSCore::Init(array("jquery"));
 /** @var array $arParams */
 /** @var array $arResult */
@@ -98,7 +99,8 @@ CJSCore::Init(array("jquery"));
                                                 $component, array("HIDE_ICONS" => "Y")
                                         );?>
                                 <?else:?>
-                                        <input  id="search-main" class="input search-query" type="text" name="q" value="<?=$arResult["REQUEST"]["QUERY"]?>" />
+                                        <input  id="search-main" class="input search-query" name="q1" type="text" value="<?=trim($arResult["REQUEST"]["QUERY"],"'")?>" />
+                                        <input  id="realSearch" type="hidden" name="q" value="<?=$arResult["REQUEST"]["QUERY"]?>" />
                                 <?endif;?>
 
                             </label>
@@ -107,29 +109,57 @@ CJSCore::Init(array("jquery"));
                             <input class="btn btn--dark btn--small btn--lower search-button" type="submit" value="<?echo GetMessage("CT_BSP_GO")?>" />
                         </div>
                 </div>
+              <br>
+              <input type="checkbox" id="strict" name="strict" value="y" <?=($_REQUEST["strict"] == "y")?"checked":""?>> Искать точно, как в запросе
+              <hr>
               <p>Разделы, в которых ведется поиск:</p>
-              <p>
-                <input type="checkbox" name="filterCheck[1]" value="x" <?=($arResult["REQUEST"]["filterCheck"][1] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Новости<br>
-                <input type="checkbox" name="filterCheck[2]" value="s" <?=($arResult["REQUEST"]["filterCheck"][2] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Видеоматериалы<br>
-                <input type="checkbox" name="filterCheck[3]" value="y" <?=($arResult["REQUEST"]["filterCheck"][3] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Фотогалерея<br>
-                <input type="checkbox" name="filterCheck[4]" value="l" <?=($arResult["REQUEST"]["filterCheck"][4] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Депутаты<br>
-                <input type="checkbox" name="filterCheck[5]" value="m" <?=($arResult["REQUEST"]["filterCheck"][5] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Структура Законодательного Собрания<br>
-                <input type="checkbox" name="filterCheck[6]" value="b" <?=($arResult["REQUEST"]["filterCheck"][6] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Законотворческая деятельность<br>
-                <input type="checkbox" name="filterCheck[7]" value="c" <?=($arResult["REQUEST"]["filterCheck"][7] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Заседания Законодательного Собрания<br>
-                <input type="checkbox" name="filterCheck[8]" value="d" <?=($arResult["REQUEST"]["filterCheck"][8] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Бюджет Оренбургской области<br>
-                <input type="checkbox" name="filterCheck[9]" value="g" <?=($arResult["REQUEST"]["filterCheck"][9] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Кадровое обеспечение<br>
-                <input type="checkbox" name="filterCheck[10]" value="aefhijktuvwz" <?=($arResult["REQUEST"]["filterCheck"][10] or count($arResult["REQUEST"]["filterCheck"]) == 0)?"checked":"" ?>>Другие<br>
-              </p>
+              <input type="checkbox" id="all" name="all" value="all" <?=($_REQUEST["all"] == "all")?"checked":""?> <?=(isset($_REQUEST["param2"]) || isset($_REQUEST["module_id"]))?"":"checked"?>/> Искать везде<br>
+              <hr>
+              <input type="checkbox" class="iblock" name="news" value="7" <?=($_REQUEST["news"] == "7")?"checked":""?>/> Новости<br>
+              <input type="checkbox" class="iblock" name="photo" value="24" <?=($_REQUEST["photo"] == "24")?"checked":""?>/> Фото<br>
+              <input type="checkbox" class="iblock" name="video" value="25" <?=($_REQUEST["video"] == "25")?"checked":""?>/> Видео<br>
+              <input type="checkbox" class="iblock" name="deputies" value="8" <?=($_REQUEST["deputies"] == "8")?"checked":""?>/> Депутаты<br>
+              <!--<input type="checkbox" class="iblock" name="fractions" value="17" <?=($_REQUEST["fractions"] == "17")?"checked":""?>/> Фракции<br>-->
+              <!--<input type="checkbox" class="iblock" name="committees" value="14" <?=($_REQUEST["committees"] == "14")?"checked":""?>/> Комитеты и комиссии<br>-->
+              <input type="checkbox" class="iblock" name="apparat" value="26" <?=($_REQUEST["apparat"] == "26")?"checked":""?>/>Аппарат ЗС<br>
+              <input type="checkbox" class="iblock" name="zakony" value="21" <?=($_REQUEST["zakony"] == "21")?"checked":""?>/>Законы и постановления<br>
+              <input type="checkbox" class="iblock" name="project" value="22" <?=($_REQUEST["project"] == "22")?"checked":""?>/>Проекты законов<br>
+              <input type="checkbox" class="iblock" name="zased" value="23" <?=($_REQUEST["zased"] == "23")?"checked":""?>/>Заседания<br>
+              <input type="checkbox" class="iblock" name="bullet" value="28" <?=($_REQUEST["bullet"] == "28")?"checked":""?>/>Бюллетени ЗС<br>
+              
+              <input id="param2" type="hidden" name="param2" value="<?=(isset($_REQUEST["param2"]))?$_REQUEST["param2"]:""?>">
+              <input id="countParam2" type="hidden" name="countParam2" value="<?=(isset($_REQUEST["countParam2"]))?$_REQUEST["countParam2"]:""?>">
+              <hr>
+              <input type="checkbox" id="main" class="notAll" name="module_id" value="main" <?=($_REQUEST["module_id"] == "main")?"checked":""?>/> Остальное<br>
+              <hr>
+              Период создания страницы или документа: 
+              <?$APPLICATION->IncludeComponent(
+                  'bitrix:main.calendar',
+									'',
+									array(
+										'SHOW_INPUT' => 'Y',
+										'INPUT_NAME' => 'from',
+										'INPUT_VALUE' => $arResult["REQUEST"]["~FROM"],
+										'INPUT_NAME_FINISH' => 'to',
+										'INPUT_VALUE_FINISH' =>$arResult["REQUEST"]["~TO"],
+										'INPUT_ADDITIONAL_ATTR' => 'class="input-field" size="10"',
+									),
+									null,
+									array('HIDE_ICONS' => 'Y')
+								);?>
+
+              
+              
           </form>
         </div>
-    </div>
+    </div> 
 
     
     <div class="results" data-preloader-place>
     
         <?if(is_object($arResult["NAV_RESULT"])):?>
-                <div class="results__count"><?echo GetMessage("CT_BSP_FOUND", array("#QUERY#" => $arResult["REQUEST"]["QUERY"]))?> <?=plural_form(
-                        count($arResult["SEARCH"])/*$arResult["NAV_RESULT"]->SelectedRowsCount()*/,
+                <div class="results__count"><?echo GetMessage("CT_BSP_FOUND", array("#QUERY#" => trim($arResult["REQUEST"]["QUERY"],"'")))?> <?=plural_form(
+                        $arResult["NAV_RESULT"]->SelectedRowsCount(),
                         array('найден','найдено','найдено'),
                         array('результат','результата','результатов')
                       );?>
@@ -239,6 +269,26 @@ CJSCore::Init(array("jquery"));
 			</div>
     
 		<?endforeach;?>
+    <?//Добавление параметров поиска к адресной строке для сохранения результатов при изменении сортировки
+    if (isset($_REQUEST["strict"])) $arResult["URL"] .="&amp;strict=".$_REQUEST["strict"];
+    if (isset($_REQUEST["all"])) $arResult["URL"] .="&amp;all=".$_REQUEST["all"];
+    if (isset($_REQUEST["news"])) $arResult["URL"] .="&amp;news=".$_REQUEST["news"];
+    if (isset($_REQUEST["photo"])) $arResult["URL"] .="&amp;photo=".$_REQUEST["photo"];
+    if (isset($_REQUEST["video"])) $arResult["URL"] .="&amp;video=".$_REQUEST["video"];
+    if (isset($_REQUEST["deputies"])) $arResult["URL"] .="&amp;deputies=".$_REQUEST["deputies"];
+    if (isset($_REQUEST["fractions"])) $arResult["URL"] .="&amp;fractions=".$_REQUEST["fractions"];
+    if (isset($_REQUEST["committees"])) $arResult["URL"] .="&amp;committees=".$_REQUEST["committees"];
+    if (isset($_REQUEST["apparat"])) $arResult["URL"] .="&amp;apparat=".$_REQUEST["apparat"];
+    if (isset($_REQUEST["zakony"])) $arResult["URL"] .="&amp;zakony=".$_REQUEST["zakony"];
+    if (isset($_REQUEST["project"])) $arResult["URL"] .="&amp;project=".$_REQUEST["project"];
+    if (isset($_REQUEST["zased"])) $arResult["URL"] .="&amp;zased=".$_REQUEST["zased"];
+    if (isset($_REQUEST["bullet"])) $arResult["URL"] .="&amp;bullet=".$_REQUEST["bullet"];
+    if ($_REQUEST["module_id"] == "main") $arResult["URL"] .="&amp;module_id=main";
+    if (isset($_REQUEST["param2"])) $arResult["URL"] .="&amp;param2=".$_REQUEST["param2"];
+    if (isset($_REQUEST["countParam2"])) $arResult["URL"] .="&amp;countParam2=".$_REQUEST["countParam2"];
+    if (isset($_REQUEST["from"])) $arResult["URL"] .="&amp;from=".$_REQUEST["from"];
+    if (isset($_REQUEST["to"])) $arResult["URL"] .="&amp;to=".$_REQUEST["to"];
+    //--------------------------------------------------------------------------------------------------?>
 		<?if($arParams["DISPLAY_BOTTOM_PAGER"] != "N") echo $arResult["NAV_STRING"]?>
 		<?if($arParams["SHOW_ORDER_BY"] != "N"):?>
 			<div class="search-sorting"><label><?echo GetMessage("CT_BSP_ORDER")?>:</label>&nbsp;
@@ -258,4 +308,86 @@ CJSCore::Init(array("jquery"));
 <script>
   console.log(<?=\CUtil::PhpToJSObject($arParams)?>);
   console.log(<?=\CUtil::PhpToJSObject($arResult)?>);
+  console.log(<?=\CUtil::PhpToJSObject($_REQUEST)?>);
+  Array.prototype.unset = function(value) {
+    if(this.indexOf(value) != -1) { // Make sure the value exists
+        this.splice(this.indexOf(value), 1);
+    }   
+}
+  BX.ready(function () {
+    $("#search-main").on('keyup', function(){
+      if ($('#strict').is(':checked')) {
+        $("#realSearch").val("'"+$(this).val()+"'");
+      }
+    })
+    $('#strict').on('click',function() {
+      if ($(this).is(':checked')) {
+        $("#realSearch").val("'"+$("#realSearch").val()+"'");
+      }else{
+        $("#realSearch").val($("#realSearch").val().slice(1,-1));
+      }
+    });
+    $('#all').on('click',function() {
+      if ($(this).is(':checked')) {
+        $("#param2").val("");
+        $("#main").attr("checked", false);
+        $(".iblock").each(function(index){
+          $(this).attr("checked", false);
+        });
+        $("#countParam2").val("");
+      }else{
+        $(".iblock").each(function(index){
+          $(this).attr("checked", true);
+        });
+        $("#countParam2").val("?PARAM2");
+      }
+    });
+    
+    $('#main').change(function() {
+      if ($(this).is(':checked')) {
+        $("#param2").val("");
+        $("#all").attr("checked", false);
+        $(".iblock").each(function(index){
+          $(this).attr("checked", false);
+        });
+        $("#countParam2").val("");
+      }else{
+        $(".iblock").each(function(index){
+          $(this).attr("checked", true);
+        });
+        $("#countParam2").val("?PARAM2");
+      }
+    });
+    $('.iblock').change(function() {
+      var param2array= [];
+      if ($(this).is(':checked')) {
+        if ($("#param2").val()!="") {
+          param2array=$("#param2").val().split("|");
+          param2array.push($(this).val());
+          $("#param2").val(param2array.join("|"));
+        }else{
+          $("#param2").val($(this).val());
+        }
+        $("#all").attr("checked", false);
+        $("#main").attr("checked", false);
+        
+      }else{
+        var n=0;
+        $(".iblock").each(function(index){
+           if ($(this).is(':checked')) n=n+1;
+        });
+        if (n==0)  {
+          $("#all").attr("checked", true);
+          $("#param2").val("");
+        }else{
+          param2array=$("#param2").val().split("|");
+          param2array.unset($(this).val());
+          $("#param2").val(param2array.join("|"));
+        }
+      }
+      param2array=$("#param2").val().split("|");
+      if (param2array.length>1) $("#countParam2").val("?PARAM2");
+      if (param2array.length == 1) $("#countParam2").val("=PARAM2");
+    });
+  });
 </script>
