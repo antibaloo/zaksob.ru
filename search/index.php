@@ -2,23 +2,8 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Результат поиска");
 global $arrFilter;
-//$arrFilter=array("%SITE_URL" => "novosti");
-//$arrFilter=array("?PARAM1" => "news|deputies");
-//$arrFilter=array("!=PARAM1" => "news");
-//$arrFilter=array("%DETAIL_PAGE_URL" => "novosti");
-/*$arrFilter=array(
-  "LOGIC" => "AND",
-  array(
-    "=PARAM1" => "deputies",
-  ),
-  array(
-    "=PARAM1" => "news",
-  )
-);*/
 if($_REQUEST["module_id"]) $arrFilter["=MODULE_ID"] = $_REQUEST["module_id"];
-//if($_REQUEST["param2"]) $arrFilter[$_REQUEST["countParam2"]] = $_REQUEST["param2"];
 if($_REQUEST["param2"]) $arrFilter["=PARAM2"] = explode("|",$_REQUEST["param2"]);
-//if($_REQUEST["dep"]) $arrFilter["=PROPERTY_DEPUTY"] = $_REQUEST["dep"];
 ?>
 
 <?$APPLICATION->IncludeComponent(
