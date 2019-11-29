@@ -1,8 +1,15 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Фотогалереи");
+if ($_REQUEST["tagName"]) $APPLICATION->SetPageProperty("title","Фотогалереи. ".$_REQUEST["tagName"]);
+else $APPLICATION->SetPageProperty("title","Фотогалереи.");
+if($_REQUEST["dep"]) $arrFilter["=PROPERTY_DEPUTY"] = $_REQUEST["dep"];
+if($_REQUEST["committees"]) $arrFilter["=PROPERTY_COMMITTEES"] = $_REQUEST["committees"];
+if($_REQUEST["fractions"]) $arrFilter["=PROPERTY_FRACTIONS"] = $_REQUEST["fractions"];
+if($_REQUEST["advisory_counsil"]) $arrFilter = array("PROPERTY_128_VALUE"=> $_REQUEST["advisory_counsil"]);
+if($_REQUEST["youth_parliament"]) $arrFilter = array("PROPERTY_129_VALUE"=> $_REQUEST["youth_parliament"]);
+if($_REQUEST["association"]) $arrFilter = array("PROPERTY_130_VALUE"=> $_REQUEST["association"]);
+if($_REQUEST["years25"]) $arrFilter = array("PROPERTY_132_VALUE"=> $_REQUEST["years25"]);
 ?>
-
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news", 
 	"photo_gallery", 
@@ -12,15 +19,19 @@ $APPLICATION->SetTitle("Фотогалереи");
 		"DISPLAY_PREVIEW_TEXT" => "Y",
 		"SEF_MODE" => "Y",
 		"AJAX_MODE" => "N",
-		"IBLOCK_ID" => "7",
-		"IBLOCK_TYPE" => "news",
+		"IBLOCK_ID" => "24",
+		"IBLOCK_TYPE" => "media",
 		"NEWS_COUNT" => "3",
 		"USE_SEARCH" => "N",
 		"USE_RSS" => "N",
 		"USE_RATING" => "N",
 		"USE_CATEGORIES" => "N",
 		"USE_REVIEW" => "N",
-		"USE_FILTER" => "N",
+		"USE_FILTER" => "",
+    "PROPERTY_CODE" => array(
+			0 => "PHOTO",
+      1 => "",
+    ),
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_ORDER1" => "DESC",
 		"SORT_BY2" => "SORT",
@@ -60,7 +71,7 @@ $APPLICATION->SetTitle("Фотогалереи");
 		"DETAIL_PAGER_TEMPLATE" => "",
 		"DETAIL_PAGER_SHOW_ALL" => "Y",
 		"DETAIL_STRICT_SECTION_CHECK" => "Y",
-		"SET_TITLE" => "Y",
+		"SET_TITLE" => "N",
 		"ADD_SECTIONS_CHAIN" => "Y",
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"SET_LAST_MODIFIED" => "N",
@@ -87,7 +98,7 @@ $APPLICATION->SetTitle("Фотогалереи");
 		"PAGER_DESC_NUMBERING" => "N",
 		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
 		"PAGER_SHOW_ALL" => "Y",
-		"FILTER_NAME" => "",
+		"FILTER_NAME" => "arrFilter",
 		"FILTER_FIELD_CODE" => "",
 		"FILTER_PROPERTY_CODE" => "",
 		"NUM_NEWS" => "20",
@@ -131,6 +142,7 @@ $APPLICATION->SetTitle("Фотогалереи");
 		"AJAX_OPTION_ADDITIONAL" => "",
 		"STRICT_SECTION_CHECK" => "Y",
 		"FILE_404" => "",
+		"NEWS_YEARS25_LINK" => "/press-tsentr/25-let-zakonodatelnomu-sobraniyu/novosti/",
 		"SEF_URL_TEMPLATES" => array(
 			"news" => "search/",
 			"section" => "rss/",
