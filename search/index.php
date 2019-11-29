@@ -1,8 +1,25 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Результат поиска");
+global $arrFilter;
+//$arrFilter=array("%SITE_URL" => "novosti");
+//$arrFilter=array("?PARAM1" => "news|deputies");
+//$arrFilter=array("!=PARAM1" => "news");
+//$arrFilter=array("%DETAIL_PAGE_URL" => "novosti");
+/*$arrFilter=array(
+  "LOGIC" => "AND",
+  array(
+    "=PARAM1" => "deputies",
+  ),
+  array(
+    "=PARAM1" => "news",
+  )
+);*/
+if($_REQUEST["module_id"]) $arrFilter["=MODULE_ID"] = $_REQUEST["module_id"];
+//if($_REQUEST["param2"]) $arrFilter[$_REQUEST["countParam2"]] = $_REQUEST["param2"];
+if($_REQUEST["param2"]) $arrFilter["=PARAM2"] = explode("|",$_REQUEST["param2"]);
+//if($_REQUEST["dep"]) $arrFilter["=PROPERTY_DEPUTY"] = $_REQUEST["dep"];
 ?>
-
 
 <?$APPLICATION->IncludeComponent(
             "bitrix:search.page", 
@@ -14,10 +31,10 @@ $APPLICATION->SetTitle("Результат поиска");
                     "USE_TITLE_RANK" => "N",
                     "DEFAULT_SORT" => "rank",
                     "arrFILTER" => array(
-                            0 => "no",
+                            0 => "no"
                     ),
                     "SHOW_WHERE" => "N",
-                    "SHOW_WHEN" => "N",
+                    "SHOW_WHEN" => "Y",
                     "PAGE_RESULT_COUNT" => "20",
                     "AJAX_MODE" => "Y",
                     "AJAX_OPTION_SHADOW" => "Y",
@@ -39,7 +56,7 @@ $APPLICATION->SetTitle("Результат поиска");
                     "AJAX_OPTION_ADDITIONAL" => "",
                     "COMPONENT_TEMPLATE" => "clear",
                     "NO_WORD_LOGIC" => "N",
-                    "FILTER_NAME" => "",
+                    "FILTER_NAME" => "arrFilter",
                     "USE_LANGUAGE_GUESS" => "Y",
                     "SHOW_RATING" => "",
                     "RATING_TYPE" => "",
