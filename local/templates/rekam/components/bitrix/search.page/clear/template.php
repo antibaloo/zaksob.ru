@@ -119,8 +119,6 @@ CJSCore::Init(array("jquery"));
               <input type="checkbox" class="iblock" name="photo" value="24" <?=($_REQUEST["photo"] == "24")?"checked":""?>/> Фото<br>
               <input type="checkbox" class="iblock" name="video" value="25" <?=($_REQUEST["video"] == "25")?"checked":""?>/> Видео<br>
               <input type="checkbox" class="iblock" name="deputies" value="8" <?=($_REQUEST["deputies"] == "8")?"checked":""?>/> Депутаты<br>
-              <!--<input type="checkbox" class="iblock" name="fractions" value="17" <?=($_REQUEST["fractions"] == "17")?"checked":""?>/> Фракции<br>-->
-              <!--<input type="checkbox" class="iblock" name="committees" value="14" <?=($_REQUEST["committees"] == "14")?"checked":""?>/> Комитеты и комиссии<br>-->
               <input type="checkbox" class="iblock" name="apparat" value="26" <?=($_REQUEST["apparat"] == "26")?"checked":""?>/>Аппарат ЗС<br>
               <input type="checkbox" class="iblock" name="zakony" value="21" <?=($_REQUEST["zakony"] == "21")?"checked":""?>/>Законы и постановления<br>
               <input type="checkbox" class="iblock" name="project" value="22" <?=($_REQUEST["project"] == "22")?"checked":""?>/>Проекты законов<br>
@@ -147,9 +145,6 @@ CJSCore::Init(array("jquery"));
 									null,
 									array('HIDE_ICONS' => 'Y')
 								);?>
-
-              
-              
           </form>
         </div>
     </div> 
@@ -306,9 +301,6 @@ CJSCore::Init(array("jquery"));
 	</div>
 </div>
 <script>
-  console.log(<?=\CUtil::PhpToJSObject($arParams)?>);
-  console.log(<?=\CUtil::PhpToJSObject($arResult)?>);
-  console.log(<?=\CUtil::PhpToJSObject($_REQUEST)?>);
   Array.prototype.unset = function(value) {
     if(this.indexOf(value) != -1) { // Make sure the value exists
         this.splice(this.indexOf(value), 1);
