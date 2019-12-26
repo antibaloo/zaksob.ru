@@ -308,6 +308,7 @@ CJSCore::Init(array("jquery"));
 }
   BX.ready(function () {
     $("#search-main").on('keyup', function(){
+      $("#realSearch").val($(this).val());
       if ($('#strict').is(':checked')) {
         $("#realSearch").val("'"+$(this).val()+"'");
       }
