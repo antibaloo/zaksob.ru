@@ -219,7 +219,7 @@ if(($show_useful_links != "Y") && ($show_useful_links != "N") )
     </div>
 
     <?
-    //$APPLICATION->AddHeadScript( SITE_TEMPLATE_PATH . FRONTEND_TEMPLATE_PATH . "/bundle.js");
+    $APPLICATION->AddHeadScript( SITE_TEMPLATE_PATH . FRONTEND_TEMPLATE_PATH . "/bundle.js");
     ?>
 
 <!-- Yandex.Metrika counter -->
