@@ -11,7 +11,7 @@ if (count($arResult["ITEMS"]) > $maxSlides){
   $countNews = $maxSlides - count($arResult["ITEMS"]);
 }
 if ($countNews > 0) {
-  $res = CIBlockElement::GetList(array("ACTIVE_FROM" => "DESC"), array("IBLOCK_ID"=>7, "!PROPERTY_SLIDER" => false), false, array("nTopCount" => $countNews), array("PROPERTY_SLIDER","NAME","CODE","DETAIL_PAGE_URL","ACTIVE_FROM"));
+  $res = CIBlockElement::GetList(array("ACTIVE_FROM" => "DESC"), array("IBLOCK_ID"=>7, "!PROPERTY_SLIDER" => false, "ACTIVE" => "Y", "<=DATE_ACTIVE_FROM" =>ConvertTimeStamp(false, "FULL")), false, array("nTopCount" => $countNews), array("PROPERTY_SLIDER","NAME","CODE","DETAIL_PAGE_URL","ACTIVE_FROM"));
   while ($ob = $res->GetNext()){
     $toSlider = array();
     $toSlider["ACTIVE_FROM"] = $ob["ACTIVE_FROM"];
