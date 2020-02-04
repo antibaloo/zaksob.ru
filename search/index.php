@@ -12,7 +12,7 @@ if($_REQUEST["param2"]) $arrFilter["=PARAM2"] = explode("|",$_REQUEST["param2"])
             array(
                     "SHOW_ITEM_PATH" => "Y",
                     "RESTART" => "N",
-                    "CHECK_DATES" => "N",
+                    "CHECK_DATES" => "Y",
                     "USE_TITLE_RANK" => "N",
                     "DEFAULT_SORT" => "rank",
                     "arrFILTER" => array(
