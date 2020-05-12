@@ -251,7 +251,9 @@ CJSCore::Init(array("jquery"));
 						endforeach;
 						?></div>
 					<?endif;?>
-
+          <?if ($arItem['PARAM2'] == 21 || $arItem['PARAM2'] == 28){?>
+          <div class="search-item-date"><label><b>Дата принятия:</b>&nbsp;</label><span><?=$arItem["DATE"]?></span></div>
+          <?}?>
 					<?if($arParams["SHOW_ITEM_DATE_CHANGE"] != "N"):?>
 						<div class="search-item-date"><label><?echo GetMessage("CT_BSP_DATE_CHANGE")?>: </label><span><?echo $arItem["DATE_CHANGE"]?></span></div>
 					<?endif;?>

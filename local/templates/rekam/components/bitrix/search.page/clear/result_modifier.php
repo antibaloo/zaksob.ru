@@ -25,7 +25,7 @@ if($arResult["REQUEST"]["~TAGS"])
 
 foreach($arResult["SEARCH"] as $j=>$item){
     if($item["PARAM2"] == 28){
-      $res = CIBlockElement::GetList(array(), array("IBLOCK_ID"=>28, "ID" => $item["ITEM_ID"]), false, false, array("IBLOCK_SECTION_ID","PROPERTY_FILE"));
+      $res = CIBlockElement::GetList(array(), array("IBLOCK_ID"=>28, "ID" => $item["ITEM_ID"]), false, false, array("IBLOCK_SECTION_ID","PROPERTY_FILE","PROPERTY_DATE"));
       if ($ob = $res->GetNext()){
         $res = CIBlockSection::GetByID($ob['IBLOCK_SECTION_ID']);
         if($ar_res = $res->GetNext()) $ob['IBLOCK_SECTION_NAME'] = $ar_res['NAME'];
@@ -33,6 +33,7 @@ foreach($arResult["SEARCH"] as $j=>$item){
         $arFile = CFile::GetFileArray($ob['PROPERTY_FILE_VALUE']);
         $arResult["SEARCH"][$j]["URL"] = $arFile['SRC'];
         $arResult["SEARCH"][$j]["FILE"] = "Y";
+        $arResult["SEARCH"][$j]["DATE"] = $ob['PROPERTY_DATE_VALUE'];//Дата принятия
       }
     }
     if($item["PARAM2"] == 26){      
@@ -67,21 +68,22 @@ foreach($arResult["SEARCH"] as $j=>$item){
                 }
             }
         }
+      
     }
     
     if($item["PARAM2"] == 21){
-                
-        $res = CIBlockElement::GetProperty(21, $item["ITEM_ID"], "sort", "asc", array("CODE" => "FILE"));
-        if($ob = $res->GetNext()){
-           
-            if($ob['VALUE']){
-                $arFile = CFile::GetFileArray($ob['VALUE']);
-                if($arFile){
-                   $arResult["SEARCH"][$j]["URL"] = $arFile["SRC"];
-                   $arResult["SEARCH"][$j]["FILE"] = "Y";
-                }
-            }
+      $res = CIBlockElement::GetProperty(21, $item["ITEM_ID"], "sort", "asc", array("CODE" => "DATE"));      
+      if($ob = $res->GetNext()) $arResult["SEARCH"][$j]["DATE"] = $ob['VALUE'];//Дата принятия
+      $res = CIBlockElement::GetProperty(21, $item["ITEM_ID"], "sort", "asc", array("CODE" => "FILE"));
+      if($ob = $res->GetNext()){
+        if($ob['VALUE']){
+          $arFile = CFile::GetFileArray($ob['VALUE']);
+          if($arFile){
+            $arResult["SEARCH"][$j]["URL"] = $arFile["SRC"];
+            $arResult["SEARCH"][$j]["FILE"] = "Y";
+          }
         }
+      }
     }
 }
 ?>
