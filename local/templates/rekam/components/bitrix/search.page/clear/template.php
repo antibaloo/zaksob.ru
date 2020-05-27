@@ -203,9 +203,9 @@ CJSCore::Init(array("jquery"));
 		<?if($arParams["DISPLAY_TOP_PAGER"] != "N") echo $arResult["NAV_STRING"]?>
 		<?foreach($arResult["SEARCH"] as $arItem):?>
 			<div class="results__items-item">
-                            <div class="results__items-item-head">
-                              <?=((IBLOCK_NEWS == $arItem["PARAM2"]) ? "Новость " : "")?>от <time datetime="<?=$arItem["DATE_CHANGE"]?>"><?=$arItem["DATE_CHANGE"]?></time>
-                            </div>
+
+                              <?=((IBLOCK_NEWS == $arItem["PARAM2"]) ? "<div class=\"results__items-item-head\">Новость от <time datetime=\"".$arItem["DATE_CHANGE"]."\">".$arItem["DATE_CHANGE"]."</time></div>" : "")?>
+
                             <div class="results__items-item-link">
                               <?if ($arItem['PARAM2']<>26){?>
                                 <a rel="bookmark"   target='_blank' href="<?echo $arItem["URL"]?>"><?echo $arItem["TITLE_FORMATED"]?></a>
