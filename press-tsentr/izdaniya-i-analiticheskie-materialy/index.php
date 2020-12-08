@@ -66,7 +66,7 @@ $APPLICATION->SetTitle("Издания и аналитические матер�
 		"STRICT_SECTION_CHECK" => "N",
 		"DE_BLOCK_NEWS_TITLE" => "Информационный бюллетень Законодательного Собрания Оренбургской области",
 		"DE_BLOCK_NEWS_LINK_TEXT" => "Все бюллетени ЗС",
-		"DE_BLOCK_NEWS_LINK" => "/press-tsentr/newspaper/",
+		"DE_BLOCK_NEWS_LINK" => "/press-tsentr/izdaniya-i-analiticheskie-materialy/newspaper/",
 		"DETAIL_URL" => ""
 	),
 	false
