@@ -1,25 +1,76 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Издания и аналитические материалы");
-?><h2>Информационный бюллетень Законодательного Собрания Оренбургской области</h2>
-<div class="news_block">
-	<div class="news_card">
- <img alt="Парламент Оренбуржья 11 февраля 2020 года" src="/upload/iblock/doc/newspaper/11022020.jpg" title="Парламент Оренбуржья 11 февраля 2020 года"><br>
- <b>Февраль 2020 г.</b><br>
- <a href="/upload/iblock/doc/newspaper/Парламент Оренбуржья 11 февраля 2020 года.pdf">СКАЧАТЬ</a>
-	</div>
-	<div class="news_card">
- <img alt="Парламент Оренбуржья 30 марта 2020 года" src="/upload/iblock/doc/newspaper/30032020.jpg" title="Парламент Оренбуржья 30 марта 2020 года"><br>
- <b>Март 2020 г.</b><br>
- <a href="/upload/iblock/doc/newspaper/Парламент Оренбуржья 30 марта 2020 года.pdf">СКАЧАТЬ</a>
-	</div>
-	<div class="news_card">
- <img alt="Парламент Оренбуржья 30 июня 2020 года" src="/upload/iblock/doc/newspaper/30062020.jpg" title="Парламент Оренбуржья 30 июня 2020 года"><br>
- <b>Июнь 2020 г.</b><br>
- <a href="/upload/iblock/doc/newspaper/Парламент Оренбуржья 30 июня 2020 года.pdf">СКАЧАТЬ</a>
-	</div>
-</div>
- <br>
+?>
+<?$APPLICATION->IncludeComponent(
+	"bitrix:news.list", 
+	"bulletins", 
+	array(
+		"ACTIVE_DATE_FORMAT" => "d.m.Y",
+		"ADD_SECTIONS_CHAIN" => "N",
+		"AJAX_MODE" => "N",
+		"AJAX_OPTION_ADDITIONAL" => "",
+		"AJAX_OPTION_HISTORY" => "Y",
+		"AJAX_OPTION_JUMP" => "N",
+		"AJAX_OPTION_STYLE" => "Y",
+		"CACHE_FILTER" => "N",
+		"CACHE_GROUPS" => "N",
+		"CACHE_TIME" => "300",
+		"CACHE_TYPE" => "A",
+		"CHECK_DATES" => "Y",
+		"COMPONENT_TEMPLATE" => "bulletins",
+		"DISPLAY_BOTTOM_PAGER" => "N",
+		"DISPLAY_DATE" => "N",
+		"DISPLAY_NAME" => "Y",
+		"DISPLAY_PICTURE" => "Y",
+		"DISPLAY_PREVIEW_TEXT" => "Y",
+		"DISPLAY_TOP_PAGER" => "N",
+		"FIELD_CODE" => array(
+			0 => "CODE",
+			1 => "",
+		),
+		"FILTER_NAME" => "",
+		"HIDE_LINK_WHEN_NO_DETAIL" => "Y",
+		"IBLOCK_ID" => "32",
+		"IBLOCK_TYPE" => "content",
+		"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+		"INCLUDE_SUBSECTIONS" => "N",
+		"MESSAGE_404" => "",
+		"NEWS_COUNT" => "5",
+		"PAGER_BASE_LINK_ENABLE" => "N",
+		"PAGER_DESC_NUMBERING" => "N",
+		"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+		"PAGER_SHOW_ALL" => "N",
+		"PAGER_SHOW_ALWAYS" => "N",
+		"PAGER_TEMPLATE" => ".default",
+		"PAGER_TITLE" => "Информационный бюллетень Законодательного Собрания Оренбургской области",
+		"PARENT_SECTION" => "",
+		"PARENT_SECTION_CODE" => "",
+		"PREVIEW_TRUNCATE_LEN" => "",
+		"PROPERTY_CODE" => array(
+			0 => "",
+			1 => "133",
+			2 => "",
+		),
+		"SET_BROWSER_TITLE" => "N",
+		"SET_LAST_MODIFIED" => "N",
+		"SET_META_DESCRIPTION" => "N",
+		"SET_META_KEYWORDS" => "N",
+		"SET_STATUS_404" => "N",
+		"SET_TITLE" => "N",
+		"SHOW_404" => "N",
+		"SORT_BY1" => "ACTIVE_FROM",
+		"SORT_BY2" => "SORT",
+		"SORT_ORDER1" => "DESC",
+		"SORT_ORDER2" => "ASC",
+		"STRICT_SECTION_CHECK" => "N",
+		"DE_BLOCK_NEWS_TITLE" => "Информационный бюллетень Законодательного Собрания Оренбургской области",
+		"DE_BLOCK_NEWS_LINK_TEXT" => "Все бюллетени ЗС",
+		"DE_BLOCK_NEWS_LINK" => "/press-tsentr/newspaper/",
+		"DETAIL_URL" => ""
+	),
+	false
+);?>
  <a href="/upload/iblock/doc/projects/Документ.pdf">Ежегодный доклад «О соблюдении и защите прав, свобод и законных интересов детей в Оренбургской области в 2019 году»</a> <br>
  <br>
  <br>
