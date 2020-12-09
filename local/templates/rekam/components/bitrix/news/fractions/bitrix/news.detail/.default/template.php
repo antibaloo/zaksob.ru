@@ -85,7 +85,8 @@ $this->setFrameMode(true);
             <?endif;?>
             
             <?if(!empty($arResult["VICE_CHAIRMAN"]) /*&& !empty($arResult["DEPUTY"][$arResult["VICE_CHAIRMAN"]])*/):
-              if (count($arResult["VICE_CHAIRMAN"]) == 2) echo '<div class="chiefs-grid__col"></div>';
+              //if (count($arResult["VICE_CHAIRMAN"]) == 2) echo '<div class="chiefs-grid__col"></div>';
+              if (count($arResult["VICE_CHAIRMAN"]) == 2) echo '<div class="vicechiefs-grid" data-count="2">';
               foreach ($arResult["VICE_CHAIRMAN"] as $vice_chairman){
                 $personal = $arResult["DEPUTY"][$vice_chairman]; ?>
             
@@ -149,7 +150,9 @@ $this->setFrameMode(true);
                     </div>
                   </div>
                 </div>
-          <?}?>
+          <?}
+          if (count($arResult["VICE_CHAIRMAN"]) == 2) echo '</div>';
+          ?>
           
             <?endif;?>
             
