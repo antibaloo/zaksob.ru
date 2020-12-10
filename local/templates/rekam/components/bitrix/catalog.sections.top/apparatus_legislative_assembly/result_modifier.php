@@ -33,7 +33,7 @@ foreach($arResult["SECTIONS"] as $i=>$arSection){
 }
 
 $arResult["SECTIONS"] = $arNewSection;
-
+/*
 $COMMITTEE_EMPLOYEES = [];
 
 $arSelect = Array("ID", "NAME", "PROPERTY_APPARATUS", "PROPERTY_POSITION", "PROPERTY_PHONE", "PROPERTY_EMAIL", "PROPERTY_EMAIL_IMG", "SORT");
@@ -48,7 +48,7 @@ while($ob = $res->GetNext()){
             "EMAIL_IMG" => CFile::GetFileArray($ob["PROPERTY_EMAIL_IMG_VALUE"])
     );
 }
-$arResult["COMMITTEE_EMPLOYEES"] = $COMMITTEE_EMPLOYEES;
+$arResult["COMMITTEE_EMPLOYEES"] = $COMMITTEE_EMPLOYEES;*/
 $strSectionSort = [];
 
 foreach($SectionSort as $k=>$id){
