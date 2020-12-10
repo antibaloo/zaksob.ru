@@ -76,7 +76,7 @@
             }
             
         }
-        
+/*------------------------------------Старый вариант вывода состава по обеспечению деятельногсти комитета-------------------------------------------        
         $arCOMPOSITION = [];
         $DEPARTMENT = '';
         
@@ -97,7 +97,25 @@
             
             $DEPARTMENT = $arResult["DISPLAY_PROPERTIES"]["DEPARTMENT"]["VALUE"];
         }
-        
+--------------------------------------Новый вариант вывода состава по обеспечению деятельногсти комитет------------------------------------------------*/        
+$arCOMPOSITION_NEW = [];
+$DEPARTMENT_NEW = [];
+if(!empty($arResult["PROPERTIES"]["DEPARTMENT_NEW"]["VALUE"])){
+  $arSelect = array("ID", "IBLOCK_ID", "NAME", "PROPERTY_POSITION", "PROPERTY_PHONE", "PROPERTY_EMAIL");
+  $arFilter = array("IBLOCK_ID"=>26, "SECTION_ID"=>$arResult["PROPERTIES"]["DEPARTMENT_NEW"]["VALUE"], "ACTIVE"=>"Y");
+  $res = CIBlockElement::GetList(array("SORT" => "ASC"), $arFilter, false, false, $arSelect);
+   while($ob = $res->GetNext()){
+                $DEPARTMENT_NEW[] = $ob["ID"];//Список ID котрудников отдела по обеспечению работы комитета
+                $arCOMPOSITION_NEW[$ob["ID"]] = array(
+                    "NAME" => $ob["NAME"],
+                    "POSITION" => $ob["PROPERTY_POSITION_VALUE"],
+                    "PHONE" => $ob["PROPERTY_PHONE_VALUE"],
+                    "EMAIL" => $ob["PROPERTY_EMAIL_VALUE"],
+                );
+            }
+            
+}
+/*------------------------------------------------------------------------------------------------*/        
         $news = [];
         $arSelect = Array("ID", "IBLOCK_ID", "NAME", "PREVIEW_PICTURE", "PREVIEW_TEXT", "DETAIL_TEXT", "DETAIL_PAGE_URL", "DATE_ACTIVE_FROM", "DATE_CREATE");
         $arFilter = Array("IBLOCK_ID"=>IBLOCK_NEWS, "=PROPERTY_COMMITTEES"=>$arResult["ID"], "ACTIVE"=>"Y");
@@ -167,10 +185,12 @@
                 );
             }
         }
+
+    $arResult["DEPARTMENT_NEW"] = $DEPARTMENT_NEW;
+    $arResult["AR_COMPOSITION_NEW"] = $arCOMPOSITION_NEW;
         
-        
-    $arResult["DEPARTMENT"] = $DEPARTMENT;
-    $arResult["AR_COMPOSITION"] = $arCOMPOSITION;
+    //$arResult["DEPARTMENT"] = $DEPARTMENT;
+    //$arResult["AR_COMPOSITION"] = $arCOMPOSITION;
     $arResult["AR_DISTRICT"] = $DISTRICT;
     $arResult["DEPUTY"] = $arDeputies;
     $arResult["COMPOSITION"] = $COMPOSITION;
