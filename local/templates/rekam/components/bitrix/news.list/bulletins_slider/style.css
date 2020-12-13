@@ -1,0 +1,5 @@
+.card-slider__slide{
+  margin: 10px auto;
+  width: calc(17%)!important;
+  min-width: 206px;
+}

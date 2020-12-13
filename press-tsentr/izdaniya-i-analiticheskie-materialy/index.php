@@ -4,7 +4,7 @@ $APPLICATION->SetTitle("Издания и аналитические матер�
 ?>
 <?$APPLICATION->IncludeComponent(
 	"bitrix:news.list", 
-	"bulletins", 
+	"bulletins_slider", 
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_SECTIONS_CHAIN" => "N",
