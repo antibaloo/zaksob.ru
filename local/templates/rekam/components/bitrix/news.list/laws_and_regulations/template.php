@@ -15,7 +15,6 @@ $this->setFrameMode(true);
 //echo "<pre>";print_r($arResult);echo "</pre>";
 ?>
 
-
 <?
 $categories = [];
 if(CModule::IncludeModule("iblock")){
@@ -92,64 +91,3 @@ if(CModule::IncludeModule("iblock")){
             <br /><?=$arResult["NAV_STRING"]?>
     <?endif;?>
 </div>
-<script>
-  $(document).ready(function() {
-     $("#filter2").focus().caretToEnd();;
-  });
-  $("#filter2").on("keyup", function(){
-    //console.log($(this).val().length);
-    if ($(this).val().length>3) $("#search").click();
-  });
-  (function ($) {
-    // Behind the scenes method deals with browser
-    // idiosyncrasies and such
-    $.caretTo = function (el, index) {
-      if (el.createTextRange) { 
-        var range = el.createTextRange(); 
-        range.move("character", index); 
-        range.select(); 
-      } else if (el.selectionStart != null) { 
-        el.focus(); 
-        el.setSelectionRange(index, index); 
-      }
-    };
-    
-    // The following methods are queued under fx for more
-    // flexibility when combining with $.fn.delay() and
-    // jQuery effects.
-    
-    // Set caret to a particular index
-    $.fn.caretTo = function (index, offset) {
-      return this.queue(function (next) {
-        if (isNaN(index)) {
-          var i = $(this).val().indexOf(index);
-          
-          if (offset === true) {
-            i += index.length;
-          } else if (offset) {
-            i += offset;
-          }
-          
-          $.caretTo(this, i);
-        } else {
-          $.caretTo(this, index);
-        }
-        
-        next();
-      });
-    };
-    
-    // Set caret to beginning of an element
-    $.fn.caretToStart = function () {
-      return this.caretTo(0);
-    };
-    
-    // Set caret to the end of an element
-    $.fn.caretToEnd = function () {
-      return this.queue(function (next) {
-        $.caretTo(this, $(this).val().length);
-        next();
-      });
-    };
-  }(jQuery));
-</script>

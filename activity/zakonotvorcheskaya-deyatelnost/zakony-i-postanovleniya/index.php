@@ -24,7 +24,7 @@ if (!empty($_REQUEST['to'])){
                     array(
                             "ACTIVE_DATE_FORMAT" => "d.m.Y",
                             "ADD_SECTIONS_CHAIN" => "N",
-                            "AJAX_MODE" => "Y",
+                            "AJAX_MODE" => "N",
                             "AJAX_OPTION_ADDITIONAL" => "",
                             "AJAX_OPTION_HISTORY" => "N",
                             "AJAX_OPTION_JUMP" => "N",
