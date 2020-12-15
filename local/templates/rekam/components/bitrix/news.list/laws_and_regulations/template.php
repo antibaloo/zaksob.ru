@@ -43,7 +43,7 @@ if(CModule::IncludeModule("iblock")){
     <div class="filter__inner">
       <div class="filter__item">
         <label class="label label--dark label--full-width" for="filter2">
-          <span>Диапазон дат принятия закона:</span>
+          <span>Вы можете указать точную дату принятия или период для поиска:</span>
         </label>
               <?$APPLICATION->IncludeComponent(
                   'bitrix:main.calendar',
@@ -67,6 +67,9 @@ if(CModule::IncludeModule("iblock")){
     <?if($arParams["DISPLAY_TOP_PAGER"]):?>
             <?=$arResult["NAV_STRING"]?><br />
     <?endif;?>
+  <?if ((!empty($_REQUEST["q"]) || !empty($_REQUEST["from"]) || !empty($_REQUEST["to"])) && count($arResult["ITEMS"]) == 0):?>
+  <p><span style="color:red">К сожалению, по вашему поисковому запросу ничего не найдено. Попробуйте изменить параметры поиска.</span></p>
+  <?endif;?>
     <?foreach($arResult["ITEMS"] as $arItem):
        // PR($arItem["DISPLAY_PROPERTIES"]);?>
 	<?
