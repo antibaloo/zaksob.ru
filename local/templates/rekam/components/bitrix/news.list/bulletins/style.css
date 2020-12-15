@@ -1,4 +1,20 @@
 .news_card{
   margin: 0 auto;
   width: 230px;
+  height: 369px;
+}
+.news_block{
+  text-align: center;
+  overflow: hidden;
+  height: 369px;
+}
+
+@media screen and (max-width: 518px) {
+  .news_card{
+    width: 180px;
+    height: 320px;    
+  }
+  .news_block{
+    height: 320px;
+  }
 }
