@@ -4,7 +4,7 @@
   height: 369px;
 }
 .news_block{
-  text-align: center;
+  
   overflow: hidden;
   height: 369px;
 }
@@ -16,5 +16,6 @@
   }
   .news_block{
     height: 320px;
+    text-align: center;
   }
 }
