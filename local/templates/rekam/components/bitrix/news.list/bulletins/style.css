@@ -1,6 +1,6 @@
 .news_card{
-  margin: 0 auto;
-  width: 230px;
+  margin: 0 auto!important;
+  width: 230px!important;
   height: 369px;
 }
 .news_block{
