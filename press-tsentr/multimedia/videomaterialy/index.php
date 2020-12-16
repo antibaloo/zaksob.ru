@@ -5,10 +5,10 @@ else $APPLICATION->SetPageProperty("title","Видеоматериалы.");
 if($_REQUEST["dep"]) $arrFilter["=PROPERTY_DEPUTY"] = $_REQUEST["dep"];
 if($_REQUEST["committees"]) $arrFilter["=PROPERTY_COMMITTEES"] = $_REQUEST["committees"];
 if($_REQUEST["fractions"]) $arrFilter["=PROPERTY_FRACTIONS"] = $_REQUEST["fractions"];
-if($_REQUEST["advisory_counsil"]) $arrFilter = array("PROPERTY_121_VALUE"=> $_REQUEST["advisory_counsil"]);
-if($_REQUEST["youth_parliament"]) $arrFilter = array("PROPERTY_122_VALUE"=> $_REQUEST["youth_parliament"]);
-if($_REQUEST["association"]) $arrFilter = array("PROPERTY_123_VALUE"=> $_REQUEST["association"]);
-if($_REQUEST["years25"]) $arrFilter = array("PROPERTY_125_VALUE"=> $_REQUEST["years25"]);
+if($_REQUEST["advisory_counsil"]) $arrFilter = array("PROPERTY_126_VALUE"=> $_REQUEST["advisory_counsil"]);
+if($_REQUEST["youth_parliament"]) $arrFilter = array("PROPERTY_127_VALUE"=> $_REQUEST["youth_parliament"]);
+if($_REQUEST["association"]) $arrFilter = array("PROPERTY_129_VALUE"=> $_REQUEST["association"]);
+if($_REQUEST["years25"]) $arrFilter = array("PROPERTY_131_VALUE"=> $_REQUEST["years25"]);
 ?>
 
 
