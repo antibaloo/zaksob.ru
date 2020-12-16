@@ -5,8 +5,8 @@ else $APPLICATION->SetPageProperty("title","Фотогалереи.");
 if($_REQUEST["dep"]) $arrFilter["=PROPERTY_DEPUTY"] = $_REQUEST["dep"];
 if($_REQUEST["committees"]) $arrFilter["=PROPERTY_COMMITTEES"] = $_REQUEST["committees"];
 if($_REQUEST["fractions"]) $arrFilter["=PROPERTY_FRACTIONS"] = $_REQUEST["fractions"];
-if($_REQUEST["advisory_counsil"]) $arrFilter = array("PROPERTY_128_VALUE"=> $_REQUEST["advisory_counsil"]);
-if($_REQUEST["youth_parliament"]) $arrFilter = array("PROPERTY_129_VALUE"=> $_REQUEST["youth_parliament"]);
+if($_REQUEST["advisory_counsil"]) $arrFilter = array("PROPERTY_125_VALUE"=> $_REQUEST["advisory_counsil"]);
+if($_REQUEST["youth_parliament"]) $arrFilter = array("PROPERTY_128_VALUE"=> $_REQUEST["youth_parliament"]);
 if($_REQUEST["association"]) $arrFilter = array("PROPERTY_130_VALUE"=> $_REQUEST["association"]);
 if($_REQUEST["years25"]) $arrFilter = array("PROPERTY_132_VALUE"=> $_REQUEST["years25"]);
 ?>
@@ -27,11 +27,11 @@ if($_REQUEST["years25"]) $arrFilter = array("PROPERTY_132_VALUE"=> $_REQUEST["ye
 		"USE_RATING" => "N",
 		"USE_CATEGORIES" => "N",
 		"USE_REVIEW" => "N",
-		"USE_FILTER" => "",
-    "PROPERTY_CODE" => array(
+		"USE_FILTER" => "N",
+		"PROPERTY_CODE" => array(
 			0 => "PHOTO",
-      1 => "",
-    ),
+			1 => "",
+		),
 		"SORT_BY1" => "ACTIVE_FROM",
 		"SORT_ORDER1" => "DESC",
 		"SORT_BY2" => "SORT",
@@ -131,10 +131,10 @@ if($_REQUEST["years25"]) $arrFilter = array("PROPERTY_132_VALUE"=> $_REQUEST["ye
 		"SHARE_HIDE" => "Y",
 		"SHARE_TEMPLATE" => "",
 		"SHARE_HANDLERS" => array(
-			0 => "facebook",
-			1 => "delicious",
-			2 => "twitter",
-			3 => "lj",
+			0 => "delicious",
+			1 => "facebook",
+			2 => "lj",
+			3 => "twitter",
 		),
 		"SHARE_SHORTEN_URL_LOGIN" => "",
 		"SHARE_SHORTEN_URL_KEY" => "",
