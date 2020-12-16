@@ -12,6 +12,7 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
+
 <section class="section">
     <header class="section__header">
         <?if(!empty($arParams["DE_BLOCK_NEWS_TITLE"])):?>
@@ -44,7 +45,6 @@ $this->setFrameMode(true);
                                 <?$js_gallery = '';
                                 if(!empty($arItem["GALLERY"])){
                                     $j = 0;
-                                    $js_gallery = array();
                                     foreach($arItem["GALLERY"] as $file){
                                         $js_gallery[] = array(
                                             "index" => $j, 
