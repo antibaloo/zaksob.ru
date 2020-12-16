@@ -1,11 +1,10 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Законы и постановления");
+CJSCore::Init(array("date"));
 ?>
 
-
 <?
-
 global $arFilter;
 $arFilter = [];
 if (!empty($_REQUEST['q'])){
