@@ -19,3 +19,14 @@
     text-align: center;
   }
 }
+
+@media screen and (max-width: 394px) {
+  .news_card{
+    width: 120px;
+    height: 220px;    
+  }
+  .news_block{
+    height: 220px;
+    text-align: center;
+  }
+}
